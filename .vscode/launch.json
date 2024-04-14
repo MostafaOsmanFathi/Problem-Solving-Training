@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "c:/Users/mo528/CLionProjects/Problem-Solving-Training/codeforces",
-      "program": "c:/Users/mo528/CLionProjects/Problem-Solving-Training/codeforces/build/Debug/outDebug",
+      "cwd": "c:/Users/mo528/CLionProjects/Problem-Solving-Training/codeforces/Phase 2.1",
+      "program": "c:/Users/mo528/CLionProjects/Problem-Solving-Training/codeforces/Phase 2.1/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [

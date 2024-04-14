@@ -12,30 +12,23 @@ using namespace std;
 void solve(){
 ///==================================================
     int n;cin>>n;
-    int x{0},y{0};
-    int ans{0};
-    int PrevKingDom{0};
-    bool Check{false};
-    while (n--){
-        char tmp;cin>>tmp;
-        if (tmp=='U'){
-            ++x;
-        }else{
-            ++y;
-        }
-        int CurKingDom=((x>y)?1:2);
-        if (Check){
-            if (CurKingDom!=PrevKingDom)
-                ++ans;
-            Check=false;
-        }
-        if (x!=y)
-            PrevKingDom=CurKingDom;
-        if (x==y){
-            Check= true;
-        }
+    int arr[n],arr2[n];
+    for (int i = 0; i < n; ++i) {
+        cin>>arr[i];
+        arr2[i]=arr[i];
     }
-    cout<<ans<<endl;
+    sort(arr2,arr2+n);
+
+    for (int i = 0; i <n ; ++i) {
+        if (arr[i]==arr2[i])continue;
+        int tmp= find(arr+i,arr+n,arr2[i])-arr;
+        for (int j = tmp; j >i ; --j) {
+            cout<<j<<" "<<j+1<<endl;
+            swap(arr[j-1],arr[j]);
+        }
+
+    }
+    cout<<" ";
 ///==================================================
 }
 signed main() {MOSTAFAOSMAN()
