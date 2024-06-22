@@ -13,14 +13,16 @@ using namespace std;
 
 void solve(){
 ///==================================================
-    string s;cin>>s;
-    stack<char>st;
-    int ans{0};
-    for (const auto& x:s) {
-        if (st.empty() or x=='(')st.push(x);
-        else if (st.top()=='(')++++ans,st.pop();
+    int n;cin>>n;
+    int mn{INT_MAX},poss;
+    for (int i = 1; i <=n ; ++i) {
+        int tmp;cin>>tmp;
+        int t1=(ceil(tmp/(double )n)*n)+i;
+        int t2=((tmp/n)*n)+i;
+        int res=(tmp<i)?i:(((t2>tmp)?t2:t1));
+        if (res<mn)mn=res,poss=i;
     }
-    cout<<ans<<endl;
+    cout<<poss<<endl;
 ///==================================================
 }
 signed main() {MOSTAFAOSMAN()

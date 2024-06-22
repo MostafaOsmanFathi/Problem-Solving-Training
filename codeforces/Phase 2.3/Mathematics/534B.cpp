@@ -8,31 +8,28 @@
 #define lcm(a,b) (((a)/gcd(a,b))*(b))
 #define inf 0x3f3f3f3f3f3f3f3fLL
 #define mSet(arr,value) memset((arr),(value),(sizeof (arr)))
-//#define int long long
+#define int long long
 using namespace std;
 
 void solve(){
 ///==================================================
-    int n,k;cin>>n>>k;
-    string s;cin>>s;
-    unordered_map<char,pair<int,int>>mp;
-    for (char i = 'A'; i <='Z' ; ++i) {
-        mp[i]={n+1,-1};
-    }
-    for (int i = 0; i <n ; ++i) {
-        auto& tmp=mp[s.at(i)];
-        tmp={min(tmp.first,i), max(tmp.second,i)};
-    }
-    int partialSum[n+1];
-    mSet(partialSum,0);
-    for (auto x:mp) {
-        if (x.second.first<=n and x.second.second!=-1) {
-            ++partialSum[x.second.first];
-            --partialSum[x.second.second + 1];
+    int v1,v2,t,d;cin>>v1>>v2>>t>>d;
+    vector<int>maxSpeed(t,d);
+    maxSpeed.back()=v2;
+    partial_sum(maxSpeed.rbegin(), maxSpeed.rend(),maxSpeed.rbegin());
+    int ans{v1+v2};
+    int CurSpeed=v1;
+    for (int i = 1; i <t-1; ++i) {
+        if (CurSpeed>maxSpeed.at(i)){
+            int tmp=abs(maxSpeed.at(i)-CurSpeed);
+            CurSpeed-= min(tmp,d);
+        }else if (CurSpeed<maxSpeed.at(i)){
+            int tmp=abs(maxSpeed.at(i)-CurSpeed);
+            CurSpeed+= min(tmp,d);
         }
+        ans+=CurSpeed;
     }
-    partial_sum(partialSum,partialSum+n+1,partialSum);
-    outCondtion(*max_element(partialSum,partialSum+n+1)>k)
+    cout<<ans<<endl;
 ///==================================================
 }
 signed main() {MOSTAFAOSMAN()

@@ -8,31 +8,15 @@
 #define lcm(a,b) (((a)/gcd(a,b))*(b))
 #define inf 0x3f3f3f3f3f3f3f3fLL
 #define mSet(arr,value) memset((arr),(value),(sizeof (arr)))
-//#define int long long
+#define int long long
 using namespace std;
 
 void solve(){
 ///==================================================
-    int n,k;cin>>n>>k;
-    string s;cin>>s;
-    unordered_map<char,pair<int,int>>mp;
-    for (char i = 'A'; i <='Z' ; ++i) {
-        mp[i]={n+1,-1};
-    }
+    int n,m;cin>>n>>m;
     for (int i = 0; i <n ; ++i) {
-        auto& tmp=mp[s.at(i)];
-        tmp={min(tmp.first,i), max(tmp.second,i)};
+        cout<<i%2;
     }
-    int partialSum[n+1];
-    mSet(partialSum,0);
-    for (auto x:mp) {
-        if (x.second.first<=n and x.second.second!=-1) {
-            ++partialSum[x.second.first];
-            --partialSum[x.second.second + 1];
-        }
-    }
-    partial_sum(partialSum,partialSum+n+1,partialSum);
-    outCondtion(*max_element(partialSum,partialSum+n+1)>k)
 ///==================================================
 }
 signed main() {MOSTAFAOSMAN()

@@ -13,14 +13,13 @@ using namespace std;
 
 void solve(){
 ///==================================================
-    string s;cin>>s;
-    stack<char>st;
-    int ans{0};
-    for (const auto& x:s) {
-        if (st.empty() or x=='(')st.push(x);
-        else if (st.top()=='(')++++ans,st.pop();
-    }
-    cout<<ans<<endl;
+    int a,b,c,d;cin>>a>>b>>c>>d;
+    a*=d;
+    b*=c;
+    int tmp=gcd(a,b);
+    a/=tmp,b/=tmp;
+    cout<<max(a,b)- min(a,b)<<"/"<<max(a,b);
+
 ///==================================================
 }
 signed main() {MOSTAFAOSMAN()

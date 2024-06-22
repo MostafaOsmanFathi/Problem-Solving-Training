@@ -8,31 +8,32 @@
 #define lcm(a,b) (((a)/gcd(a,b))*(b))
 #define inf 0x3f3f3f3f3f3f3f3fLL
 #define mSet(arr,value) memset((arr),(value),(sizeof (arr)))
-//#define int long long
+#define int long long
 using namespace std;
 
 void solve(){
 ///==================================================
-    int n,k;cin>>n>>k;
-    string s;cin>>s;
-    unordered_map<char,pair<int,int>>mp;
-    for (char i = 'A'; i <='Z' ; ++i) {
-        mp[i]={n+1,-1};
+    int a,b,c;cin>>a>>b>>c;
+    if (c==0 and a%b==0){
+        cout<<1<<endl;
+        return;
     }
-    for (int i = 0; i <n ; ++i) {
-        auto& tmp=mp[s.at(i)];
-        tmp={min(tmp.first,i), max(tmp.second,i)};
-    }
-    int partialSum[n+1];
-    mSet(partialSum,0);
-    for (auto x:mp) {
-        if (x.second.first<=n and x.second.second!=-1) {
-            ++partialSum[x.second.first];
-            --partialSum[x.second.second + 1];
+    a%=b;
+    int poss{0};
+    while (a and poss<1e5){
+        ++poss;
+        a*=10;
+        int tmp= a/b;
+        if (tmp==c) {
+            cout<<poss<<endl;
+            return;
         }
+        a-=(tmp*b);
     }
-    partial_sum(partialSum,partialSum+n+1,partialSum);
-    outCondtion(*max_element(partialSum,partialSum+n+1)>k)
+    if (c==0 and a==0)
+        cout<<poss+1<<endl;
+    else
+        cout<<-1<<endl;
 ///==================================================
 }
 signed main() {MOSTAFAOSMAN()

@@ -8,31 +8,34 @@
 #define lcm(a,b) (((a)/gcd(a,b))*(b))
 #define inf 0x3f3f3f3f3f3f3f3fLL
 #define mSet(arr,value) memset((arr),(value),(sizeof (arr)))
-//#define int long long
+#define int long long
 using namespace std;
 
 void solve(){
 ///==================================================
-    int n,k;cin>>n>>k;
-    string s;cin>>s;
-    unordered_map<char,pair<int,int>>mp;
-    for (char i = 'A'; i <='Z' ; ++i) {
-        mp[i]={n+1,-1};
+    string n;cin>>n;
+    int arr[n.size()];
+    for (int i = 0; i <n.size() ; ++i) {
+        arr[i]=n.at(i)-'0';
     }
-    for (int i = 0; i <n ; ++i) {
-        auto& tmp=mp[s.at(i)];
-        tmp={min(tmp.first,i), max(tmp.second,i)};
-    }
-    int partialSum[n+1];
-    mSet(partialSum,0);
-    for (auto x:mp) {
-        if (x.second.first<=n and x.second.second!=-1) {
-            ++partialSum[x.second.first];
-            --partialSum[x.second.second + 1];
+    string Zero(n.size(),'0');
+    vector<string>ans;
+    bool Done{false};
+    while (!Done) {
+        Done=true;
+        string tmp=Zero;
+        for (int i = 0; i < n.size(); ++i) {
+            if (arr[i])
+                Done=false,--arr[i],tmp.at(i)='1';
         }
+        if (!Done)
+            ans.push_back(tmp);
     }
-    partial_sum(partialSum,partialSum+n+1,partialSum);
-    outCondtion(*max_element(partialSum,partialSum+n+1)>k)
+    cout<<ans.size()<<endl;
+    for (const auto& x:ans) {
+        cout<<stoll(x)<<" ";
+    }
+
 ///==================================================
 }
 signed main() {MOSTAFAOSMAN()

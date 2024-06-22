@@ -13,32 +13,33 @@ using namespace std;
 
 void solve(){
 ///==================================================
-    int n;cin>>n;
-    string s;cin>>s;
-    bool vis[s.size()];
-    mSet(vis,false);
-    int ans{0};
-    for (int i = 0; i < n; ++i) {
-        if (s.at(i)=='L'){
-            for (int j = i; j >=0 ; --j) {
-                if (s.at(j)=='R' or vis[j])
-                    break;
-                vis[j]=true;
-            }
-        }else if (s.at(i)=='R'){
-            int tmp{1};
-            for (int j = i; j <n ; ++j,++tmp) {
-                if (s.at(j)=='L'){
-                    ans+=tmp&1;
-                    vis[j]=true;
-                    break;
-                }
-                vis[j]=true;
-            }
+    int n,x,y;cin>>n>>x>>y;
+    set<pair<int,int>>st;
+    while (n--){
+        int a,b;cin>>a>>b;
+        int tmp1=(b-y);
+        int tmp2=(a-x);
+        int tmp3= gcd(tmp1,tmp2);
+        tmp1/=tmp3;
+        tmp2/=tmp3;
+        if (tmp1==0){
+            tmp1=0;
+            tmp2=0;
+        }else if (tmp2==0){
+            tmp1= abs(tmp1);
+        }else if (tmp1<0 and tmp2<0){
+            tmp1= abs(tmp1);
+            tmp2= abs(tmp2);
+        }else if (tmp1<0 or tmp2<0){
+            tmp1= -abs(tmp1);
+            tmp2= abs(tmp2);
         }
+        st.insert({tmp1,tmp2});
     }
-
-    cout<<(n- accumulate(vis,vis+n,0))+ans<<endl;
+//    for (auto x:st) {
+//        cout<<x.first<<" "<<x.second<<endl;
+//    }
+    cout<<st.size();
 ///==================================================
 }
 signed main() {MOSTAFAOSMAN()

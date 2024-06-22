@@ -13,18 +13,20 @@ using namespace std;
 
 void solve(){
 ///==================================================
-    string s;cin>>s;
-    stack<char>st;
-    int ans{0};
-    for (const auto& x:s) {
-        if (st.empty() or x=='(')st.push(x);
-        else if (st.top()=='(')++++ans,st.pop();
+    ld n,a;cin>>n>>a;
+    ld mn{INT_MAX},ans{0};
+    for (int i = n,j=3; j<=n; --i,++j) {
+        ld tmp=((j-2)*180)/n;
+//        cout<<j<<" [] "<<i<<":"<<tmp<<endl<<flush;
+        ld res= abs(tmp-a);
+        if (res<mn)
+            mn=res,ans=i;
     }
-    cout<<ans<<endl;
+    cout<<"1 2 "<<ans<<endl;
 ///==================================================
 }
 signed main() {MOSTAFAOSMAN()
-
+    cout<<setprecision(1000);
 //    tloop
     solve();
 

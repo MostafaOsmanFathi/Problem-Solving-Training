@@ -8,31 +8,35 @@
 #define lcm(a,b) (((a)/gcd(a,b))*(b))
 #define inf 0x3f3f3f3f3f3f3f3fLL
 #define mSet(arr,value) memset((arr),(value),(sizeof (arr)))
-//#define int long long
+#define int long long
 using namespace std;
-
+int countStr(const string& str){
+    int res{0};
+    for (int i = str.size()-1; i >= 0; --i) {
+        if (str.at(i)=='9')++res;
+        else break;
+    }
+    return res;
+}
 void solve(){
 ///==================================================
-    int n,k;cin>>n>>k;
-    string s;cin>>s;
-    unordered_map<char,pair<int,int>>mp;
-    for (char i = 'A'; i <='Z' ; ++i) {
-        mp[i]={n+1,-1};
-    }
-    for (int i = 0; i <n ; ++i) {
-        auto& tmp=mp[s.at(i)];
-        tmp={min(tmp.first,i), max(tmp.second,i)};
-    }
-    int partialSum[n+1];
-    mSet(partialSum,0);
-    for (auto x:mp) {
-        if (x.second.first<=n and x.second.second!=-1) {
-            ++partialSum[x.second.first];
-            --partialSum[x.second.second + 1];
+    int n,d;cin>>n>>d;
+    string tmp;
+    string nStr= to_string(n);
+    int nines= countStr(nStr);
+    string ans=nStr;
+
+
+    for (int i =nStr.size()-1 ; i >=0 ; --i) {
+        tmp.insert(tmp.begin(),nStr.at(i));
+        int Subtract= stoll(tmp)+1;
+        if (Subtract>d)break;
+        if (string str=to_string(n-Subtract);countStr(str)>nines){
+            nines= countStr(str);
+            ans=str;
         }
     }
-    partial_sum(partialSum,partialSum+n+1,partialSum);
-    outCondtion(*max_element(partialSum,partialSum+n+1)>k)
+    cout<<ans<<endl;
 ///==================================================
 }
 signed main() {MOSTAFAOSMAN()

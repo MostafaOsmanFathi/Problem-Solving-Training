@@ -10,23 +10,27 @@
 #define mSet(arr,value) memset((arr),(value),(sizeof (arr)))
 #define int long long
 using namespace std;
+int arthmaticSum(int n){
+    return n*(n+1)/2;
+}
+int CountBanana(int a,int b){
 
+    return (arthmaticSum(a)*(b+1))+(arthmaticSum(b)*(a+1));
+}
 void solve(){
 ///==================================================
-    string s;cin>>s;
-    stack<char>st;
+    ld m,b;cin>>m>>b;
     int ans{0};
-    for (const auto& x:s) {
-        if (st.empty() or x=='(')st.push(x);
-        else if (st.top()=='(')++++ans,st.pop();
+    for (int i = 0; i <=m*b ; ++i) {
+        int tmp=(-i/m)+b;
+        ans= max(ans,CountBanana(i,tmp));
     }
     cout<<ans<<endl;
 ///==================================================
 }
 signed main() {MOSTAFAOSMAN()
-
 //    tloop
-    solve();
+        solve();
 
     return 0;
 }

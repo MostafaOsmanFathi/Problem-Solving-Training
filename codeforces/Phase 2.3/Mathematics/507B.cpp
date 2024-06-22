@@ -13,14 +13,11 @@ using namespace std;
 
 void solve(){
 ///==================================================
-    string s;cin>>s;
-    stack<char>st;
-    int ans{0};
-    for (const auto& x:s) {
-        if (st.empty() or x=='(')st.push(x);
-        else if (st.top()=='(')++++ans,st.pop();
-    }
-    cout<<ans<<endl;
+    int r,x,y,x2,y2;
+    cin>>r>>x>>y>>x2>>y2;
+    r*=2;
+    ld tmp= sqrtl(((x2-x)*(x2-x))+((y2-y)*(y2-y)));
+    cout<<ceil(tmp/r);
 ///==================================================
 }
 signed main() {MOSTAFAOSMAN()

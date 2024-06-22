@@ -8,35 +8,27 @@
 #define lcm(a,b) (((a)/gcd(a,b))*(b))
 #define inf 0x3f3f3f3f3f3f3f3fLL
 #define mSet(arr,value) memset((arr),(value),(sizeof (arr)))
-//#define int long long
+#define int long long
 using namespace std;
-
+int getLastBitPosstion(int n) {
+    int position{0};
+    while (n) {
+        position++,n>>=1;
+    }
+    return position;
+}
 void solve(){
 ///==================================================
     int n,k;cin>>n>>k;
-    string s;cin>>s;
-    unordered_map<char,pair<int,int>>mp;
-    for (char i = 'A'; i <='Z' ; ++i) {
-        mp[i]={n+1,-1};
-    }
-    for (int i = 0; i <n ; ++i) {
-        auto& tmp=mp[s.at(i)];
-        tmp={min(tmp.first,i), max(tmp.second,i)};
-    }
-    int partialSum[n+1];
-    mSet(partialSum,0);
-    for (auto x:mp) {
-        if (x.second.first<=n and x.second.second!=-1) {
-            ++partialSum[x.second.first];
-            --partialSum[x.second.second + 1];
-        }
-    }
-    partial_sum(partialSum,partialSum+n+1,partialSum);
-    outCondtion(*max_element(partialSum,partialSum+n+1)>k)
+    int tmp=getLastBitPosstion(n)-1;
+    int ans=(1LL<<tmp);
+    if (--k)
+        ans^=ans-1;
+    cout<<max(ans,n)<<endl;
 ///==================================================
 }
 signed main() {MOSTAFAOSMAN()
-
+    cout<<setprecision(100)<<fixed;
 //    tloop
     solve();
 
